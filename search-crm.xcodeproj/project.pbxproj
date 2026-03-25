@@ -6,14 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		42AB54002F73E6DC008CA7AE /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 42AB53FF2F73E6DC008CA7AE /* Auth */; };
+		42AB54022F73E6DC008CA7AE /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 42AB54012F73E6DC008CA7AE /* PostgREST */; };
+		42AB54042F73E6DC008CA7AE /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 42AB54032F73E6DC008CA7AE /* Realtime */; };
+		42AB54062F73E6DC008CA7AE /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 42AB54052F73E6DC008CA7AE /* Storage */; };
+		42AB540E2F73E9A3008CA7AE /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 42AB540D2F73E9A3008CA7AE /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		42EE03E12F73A49F005AA717 /* search-crm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "search-crm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		42EE03E32F73A49F005AA717 /* search-crm */ = {
+		42EE03E32F73A49F005AA717 /* SearchCRM */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "search-crm";
+			path = SearchCRM;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -23,16 +31,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42AB540E2F73E9A3008CA7AE /* Supabase in Frameworks */,
+				42AB54062F73E6DC008CA7AE /* Storage in Frameworks */,
+				42AB54042F73E6DC008CA7AE /* Realtime in Frameworks */,
+				42AB54022F73E6DC008CA7AE /* PostgREST in Frameworks */,
+				42AB54002F73E6DC008CA7AE /* Auth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42AB540C2F73E9A3008CA7AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		42EE03D82F73A49F005AA717 = {
 			isa = PBXGroup;
 			children = (
-				42EE03E32F73A49F005AA717 /* search-crm */,
+				42EE03E32F73A49F005AA717 /* SearchCRM */,
+				42AB540C2F73E9A3008CA7AE /* Frameworks */,
 				42EE03E22F73A49F005AA717 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,10 +82,15 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				42EE03E32F73A49F005AA717 /* search-crm */,
+				42EE03E32F73A49F005AA717 /* SearchCRM */,
 			);
 			name = "search-crm";
 			packageProductDependencies = (
+				42AB53FF2F73E6DC008CA7AE /* Auth */,
+				42AB54012F73E6DC008CA7AE /* PostgREST */,
+				42AB54032F73E6DC008CA7AE /* Realtime */,
+				42AB54052F73E6DC008CA7AE /* Storage */,
+				42AB540D2F73E9A3008CA7AE /* Supabase */,
 			);
 			productName = "search-crm";
 			productReference = 42EE03E12F73A49F005AA717 /* search-crm.app */;
@@ -94,6 +120,9 @@
 			);
 			mainGroup = 42EE03D82F73A49F005AA717;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				42AB53FE2F73E6DC008CA7AE /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 42EE03E22F73A49F005AA717 /* Products */;
 			projectDirPath = "";
@@ -251,8 +280,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6WLH4RZBN5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Поиск | CRM";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -282,8 +314,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6WLH4RZBN5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Поиск | CRM";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -328,6 +363,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		42AB53FE2F73E6DC008CA7AE /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		42AB53FF2F73E6DC008CA7AE /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42AB53FE2F73E6DC008CA7AE /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		42AB54012F73E6DC008CA7AE /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42AB53FE2F73E6DC008CA7AE /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		42AB54032F73E6DC008CA7AE /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42AB53FE2F73E6DC008CA7AE /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		42AB54052F73E6DC008CA7AE /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42AB53FE2F73E6DC008CA7AE /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		42AB540D2F73E9A3008CA7AE /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42AB53FE2F73E6DC008CA7AE /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 42EE03D92F73A49F005AA717 /* Project object */;
 }

@@ -10,6 +10,53 @@ class ProfileViewModel: ObservableObject {
     
     @Published var roles: [Role] = []
     
+    @Published var editingProfile: ProfileModel? = nil
+    
+    func startEditing() {
+            editingProfile = profile
+    }
+        
+    func cancelEditing() {
+        editingProfile = nil
+    }
+    
+    func saveProfile() async {
+        guard let editing = editingProfile else { return }
+        
+        isLoading = true
+        let update = ProfileUpdate(
+                    firstName: editing.firstName,
+                    lastName: editing.lastName,
+                    middleName: editing.middleName,
+                    gender: editing.gender,
+                    birthDate: editing.birthDate,
+                    passportIssuedDate: editing.passportIssuedDate,
+                    passportSeries: editing.passportSeries,
+                    passportNumber: editing.passportNumber,
+                    passportIssuedBy: editing.passportIssuedBy,
+                    registrationAddress: editing.registrationAddress,
+                    livingAddress: editing.livingAddress,
+                    phone: editing.phone,
+                    agency: editing.agency
+                )
+        
+        do {
+            try await supabase
+                .from("profiles")
+                .update(update)
+                .eq("id", value: editing.id)
+                .execute()
+            
+            profile = editing
+            editingProfile = nil
+        } catch {
+            errorText = "Ошибка сохранения"
+            print(error)
+        }
+        
+        isLoading = false
+    }
+    
     func fetchProfile() async  {
         isLoading.toggle()
         
@@ -28,7 +75,7 @@ class ProfileViewModel: ObservableObject {
             living_address,
             phone,
             agency,
-            roles(id, name)
+            roles(id, name_ru, name_en)
         """
         
         do {

@@ -7,7 +7,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "LandLords"
+            "value" : "Landlords"
           }
         },
         "ru" : {
@@ -179,6 +179,12 @@
             "state" : "translated",
             "value" : "General Info"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основное"
+          }
         }
       }
     },
@@ -216,6 +222,23 @@
         }
       }
     },
+    "settings.profile.notSpecified" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not specified"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Не указано"
+          }
+        }
+      }
+    },
     "settings.profile.passport" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -223,6 +246,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Passport"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Паспорт"
           }
         }
       }

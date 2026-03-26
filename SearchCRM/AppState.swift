@@ -7,6 +7,8 @@ class AppState: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var isLoading: Bool = true
     
+    // В AppState добавляешь
+    
     init() {
         Task {
             

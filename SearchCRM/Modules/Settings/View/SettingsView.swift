@@ -7,34 +7,59 @@ struct SettingsView: View {
     @State private var isShowingLogoutAlert: Bool = false
     
     var body: some View {
-        VStack {
-            VStack(alignment: .leading) {
-                Text("Настройки")
-                    .font(.largeTitle)
-                    .bold()
-                
-            }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-            // TODO: Вынести растягивание VStack в расширения ( Extensions ), чтобы переиспользовать в др.местах
-            Spacer()
-            Button("Выйти") {
-                isShowingLogoutAlert.toggle()
-            }
-            .foregroundStyle(.red)
-            .padding()
-            .alert("Выход", isPresented: $isShowingLogoutAlert) {
-                Button("Выход", role: .destructive) {
-                    Task {
-                        await viewModel.logout()
+        NavigationStack {
+
+                List {
+                    Section {
+                        NavigationLink(destination: ProfileView()) {
+                            HStack {
+                                Image(systemName: "person.circle")
+                                    .font(.title)
+                                    .fontWeight(.semibold)
+                                Text("settings.profile.title")
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                            }
+                            .frame(minHeight: 60)
+                        }
                     }
-                }
-                Button("Отмена", role: .cancel) {
+                    
+                    Section {
+                        NavigationLink(destination: ProfileView()) {
+                            HStack {
+                                Image(systemName: "sun.max.fill")
+                                Text("settings.appearance")
+                            }
+                            
+                        }
+                    }
+                    
+                    Section {
+                        Button("settings.logout") {
+                            isShowingLogoutAlert.toggle()
+                        }
+                        .foregroundStyle(.red)
+                        .frame(maxWidth: .infinity)
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .padding(.horizontal)
+                        .alert("settings.logout", isPresented: $isShowingLogoutAlert) {
+                            Button("settings.logout", role: .destructive) {
+                                Task {
+                                    await viewModel.logout()
+                                }
+                            }
+                            Button("settings.logout.cancel", role: .cancel) {
+                                
+                            }
+                        } message: {
+                            Text("settings.logout.message")
+                        }
+                    }
                     
                 }
-            } message: {
-                Text("Вы уверены что хотите выйти ?")
-            }
+                .navigationTitle(Text("settings.title"))
+                .navigationBarTitleDisplayMode(.large)
             
         }
     }

@@ -8,12 +8,12 @@ enum AppTab: String, CaseIterable, Identifiable {
     
     var id: String { self.rawValue }
     
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
-        case .objects: return "Объекты"
-        case .tenants: return "Арендаторы"
-        case .landlords: return "Арендодатели"
-        case .settings: return "Настройки"
+        case .objects: return "objects.title"
+        case .tenants: return "tenants.title"
+        case .landlords: return "landlords.title"
+        case .settings: return "settings.title"
         }
     }
     

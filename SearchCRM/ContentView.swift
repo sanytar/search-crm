@@ -1,6 +1,5 @@
 import SwiftUI
 import Supabase
-import Supabase
 
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
@@ -15,20 +14,24 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-//            if appState.isAuthenticated {
             
-            TabView  {
-                ForEach(AppTab.allCases) { tab in
-                    tab.destination
-                        .tabItem {
-                            Label(tab.title, systemImage: tab.icon)
+            if appState.isLoading {
+                ZStack {
+                            Color(.systemBackground).ignoresSafeArea()
+                            ProgressView()
                         }
+            } else if appState.isAuthenticated {
+                TabView  {
+                    ForEach(AppTab.allCases) { tab in
+                        tab.destination
+                            .tabItem {
+                                Label(tab.title, systemImage: tab.icon)
+                            }
+                    }
                 }
+            } else {
+                AuthView()
             }
-            
-//            } else {
-//                AuthView()
-//            }
         }
         
     }

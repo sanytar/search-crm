@@ -13,7 +13,7 @@ struct ObjectsView: View {
                     Text("Объект недвижимости")
                 }
             }
-            .navigationTitle("Объекты")
+            .navigationTitle("objects.title")
             
             // 1. ПОИСК: Появляется под заголовком при свайпе вниз
             .searchable(text: $searchText, prompt: "Поиск по названию")

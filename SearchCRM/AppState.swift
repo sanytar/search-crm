@@ -5,6 +5,7 @@ import Combine
 @MainActor
 class AppState: ObservableObject {
     @Published var isAuthenticated: Bool = false
+    @Published var isLoading: Bool = true
     
     init() {
         Task {
@@ -16,7 +17,8 @@ class AppState: ObservableObject {
                 isAuthenticated = true
             }
             
-            // Слушаем изменения авторизации
+            isLoading = false            
+            
             for await (event, session) in await supabase.auth.authStateChanges {
                 switch event {
                 case .signedIn:

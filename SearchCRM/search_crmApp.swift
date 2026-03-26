@@ -6,12 +6,27 @@
 //
 
 import SwiftUI
+import Supabase
 
 @main
 struct search_crmApp: App {
+    @StateObject private var appState = AppState()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appState)
+                .onOpenURL  { url in
+                    Task {
+                        print("📨 URL: \(url)")
+                        do {
+                            try await supabase.auth.handle(url)
+                            print("✅ URL обработан")
+                        } catch {
+                            print("❌ Ошибка: \(error)")
+                        }
+                    }
+                }
         }
     }
 }

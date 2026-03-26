@@ -21,23 +21,12 @@ struct ObjectsView: View {
             // 2. ТУЛБАР: Кнопки управления
             .toolbar {
                 // Кнопка фильтра слева
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        isShowingFilter.toggle()
-                    } label: {
-                        Image(systemName: "line.3.horizontal.decrease.circle")
-                    }
-                }
+                
+                CRMToolbarButton(isOpen: $isShowingFilter, icon: "line.3.horizontal.decrease.circle", position: .topBarLeading)
                 
                 // Кнопка «Плюс» справа
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        isShowingAddModal.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                            .font(.title3)
-                    }
-                }
+            
+                CRMToolbarButton(isOpen: $isShowingAddModal, icon: "plus", position: .topBarTrailing)
             }
             // Вызов модалки фильтров
             .sheet(isPresented: $isShowingFilter) {

@@ -15,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42AB54372F746881008CA7AE /* search-crm-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "search-crm-Info.plist"; sourceTree = "<group>"; };
 		42EE03E12F73A49F005AA717 /* search-crm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "search-crm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -52,6 +53,7 @@
 		42EE03D82F73A49F005AA717 = {
 			isa = PBXGroup;
 			children = (
+				42AB54372F746881008CA7AE /* search-crm-Info.plist */,
 				42EE03E32F73A49F005AA717 /* SearchCRM */,
 				42AB540C2F73E9A3008CA7AE /* Frameworks */,
 				42EE03E22F73A49F005AA717 /* Products */,
@@ -283,6 +285,7 @@
 				DEVELOPMENT_TEAM = 6WLH4RZBN5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "search-crm-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Поиск | CRM";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -317,6 +320,7 @@
 				DEVELOPMENT_TEAM = 6WLH4RZBN5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "search-crm-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Поиск | CRM";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

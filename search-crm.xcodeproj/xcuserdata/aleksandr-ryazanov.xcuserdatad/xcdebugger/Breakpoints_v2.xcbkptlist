@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3FC36919-E734-4FAD-87BA-C28228E77208"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x41f;&#x43e;&#x438;&#x441;&#x43a; | CRM/Objects/View/ObjectsView.swift"

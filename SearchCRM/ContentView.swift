@@ -3,6 +3,8 @@ import Supabase
 
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
+    
+//    save session
     func handleIncomingURL(_ url: URL) async {
         do {
             try await supabase.auth.handle(url)

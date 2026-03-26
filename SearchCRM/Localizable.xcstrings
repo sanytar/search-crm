@@ -103,6 +103,40 @@
         }
       }
     },
+    "settings.profile.additionalInfo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Additional Info"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Дополнительная информация"
+          }
+        }
+      }
+    },
+    "settings.profile.agency" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agency"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Агенство"
+          }
+        }
+      }
+    },
     "settings.profile.edit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -116,6 +150,181 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Изменить"
+          }
+        }
+      }
+    },
+    "settings.profile.firstName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First Name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя"
+          }
+        }
+      }
+    },
+    "settings.profile.general" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General Info"
+          }
+        }
+      }
+    },
+    "settings.profile.lastName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фамилия"
+          }
+        }
+      }
+    },
+    "settings.profile.middleName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Middle Name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчество"
+          }
+        }
+      }
+    },
+    "settings.profile.passport" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passport"
+          }
+        }
+      }
+    },
+    "settings.profile.passportIssuedBy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Issued by whom"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Кем выдан"
+          }
+        }
+      }
+    },
+    "settings.profile.passportIssuedDate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date of issue"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Дата выдачи"
+          }
+        }
+      }
+    },
+    "settings.profile.passportNumber" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Номер"
+          }
+        }
+      }
+    },
+    "settings.profile.passportSeries" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Series"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Серия"
+          }
+        }
+      }
+    },
+    "settings.profile.phone" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phone"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер телефона"
+          }
+        }
+      }
+    },
+    "settings.profile.role" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Role"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Должность"
           }
         }
       }
@@ -192,10 +401,6 @@
       "comment" : "A description below the title of the login screen.",
       "isCommentAutoGenerated" : true
     },
-    "Агенство" : {
-      "comment" : "A field for entering the name of the user's agency.",
-      "isCommentAutoGenerated" : true
-    },
     "Адрес" : {
       "comment" : "A label for the address field in the \"Add Object\" view.",
       "isCommentAutoGenerated" : true
@@ -204,28 +409,8 @@
       "comment" : "A button label that translates to \"Login\".",
       "isCommentAutoGenerated" : true
     },
-    "Дата выдачи" : {
-      "comment" : "A label that translates to \"Date of issue\".",
-      "isCommentAutoGenerated" : true
-    },
     "Добавить" : {
       "comment" : "A button that adds a new object when pressed.",
-      "isCommentAutoGenerated" : true
-    },
-    "Должность" : {
-      "comment" : "A label for the user's job title in the profile view.",
-      "isCommentAutoGenerated" : true
-    },
-    "Дополнительная информация" : {
-      "comment" : "A section header in the profile view that translates to \"Additional information\".",
-      "isCommentAutoGenerated" : true
-    },
-    "Имя" : {
-      "comment" : "A label for the user's first name",
-      "isCommentAutoGenerated" : true
-    },
-    "Кем выдан" : {
-      "comment" : "A label for the \"Issued by\" field in the profile view",
       "isCommentAutoGenerated" : true
     },
     "Комментарий" : {
@@ -248,14 +433,6 @@
       "comment" : "A title for a view that allows users to add a new object.",
       "isCommentAutoGenerated" : true
     },
-    "Номер" : {
-      "comment" : "A label that describes a field for the passport number",
-      "isCommentAutoGenerated" : true
-    },
-    "Номер телефона" : {
-      "comment" : "A label displayed above the user's phone number.",
-      "isCommentAutoGenerated" : true
-    },
     "Объект недвижимости" : {
       "comment" : "A placeholder text for a list item representing a real estate object.",
       "isCommentAutoGenerated" : true
@@ -268,16 +445,8 @@
       "comment" : "A button that dismisses the current view when pressed.",
       "isCommentAutoGenerated" : true
     },
-    "Отчество" : {
-      "comment" : "A label for the user's middle name",
-      "isCommentAutoGenerated" : true
-    },
     "Параметры" : {
       "comment" : "A section header that says \"Parameters\".",
-      "isCommentAutoGenerated" : true
-    },
-    "Паспорт" : {
-      "comment" : "A section header that translates to \"Passport\".",
       "isCommentAutoGenerated" : true
     },
     "Площадь" : {
@@ -288,16 +457,8 @@
       "comment" : "A prompt for searching objects by name.",
       "isCommentAutoGenerated" : true
     },
-    "Серия" : {
-      "comment" : "A label for the passport series field",
-      "isCommentAutoGenerated" : true
-    },
     "Ссылка для входа уже на вашей почте ✉️" : {
       "comment" : "A text displayed when the user has already received a login link via email.",
-      "isCommentAutoGenerated" : true
-    },
-    "Фамилия" : {
-      "comment" : "A field that allows the user to input their last name",
       "isCommentAutoGenerated" : true
     },
     "Фильтры" : {

@@ -25,7 +25,7 @@ struct SettingsView: View {
                     }
                     
                     Section {
-                        NavigationLink(destination: ProfileView()) {
+                        NavigationLink(destination: AppearanceView()) {
                             HStack {
                                 Image(systemName: "sun.max.fill")
                                 Text("settings.appearance")
@@ -40,7 +40,6 @@ struct SettingsView: View {
                         }
                         .foregroundStyle(.red)
                         .frame(maxWidth: .infinity)
-                        .background(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .padding(.horizontal)
                         .alert("settings.logout", isPresented: $isShowingLogoutAlert) {

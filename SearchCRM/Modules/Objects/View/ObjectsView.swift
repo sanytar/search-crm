@@ -5,37 +5,36 @@ struct ObjectsView: View {
     @State private var isShowingFilter = false
     @State private var isShowingAddModal = false
     
+    @StateObject private var viewModel: ObjectsViewModel = ObjectsViewModel()
+    
     var body: some View {
         NavigationStack {
             List {
-                // Тут скоро будут наши оранжевые карточки
-                ForEach(0..<5) { _ in
-                    Text("Объект недвижимости")
-                }
+                Text("Объект")
+                Text("Объект")
+                Text("Объект")
+                Text("Объект")
+                Text("Объект")
             }
             .navigationTitle("objects.title")
             
-            // 1. ПОИСК: Появляется под заголовком при свайпе вниз
             .searchable(text: $searchText, prompt: "Поиск по названию")
             
-            // 2. ТУЛБАР: Кнопки управления
             .toolbar {
-                // Кнопка фильтра слева
-                
                 CRMToolbarButton(isOpen: $isShowingFilter, icon: "line.3.horizontal.decrease.circle", position: .topBarLeading)
-                
-                // Кнопка «Плюс» справа
             
                 CRMToolbarButton(isOpen: $isShowingAddModal, icon: "plus", position: .topBarTrailing)
             }
-            // Вызов модалки фильтров
+            
             .sheet(isPresented: $isShowingFilter) {
                 Text("Фильтры")
-                    .presentationDetents([.medium]) // Модалка на пол-экрана
+                    .presentationDetents([.medium])
             }
-            // Вызов модалки добавления (про которую ты спрашивал)
             .sheet(isPresented: $isShowingAddModal) {
-                AddObjectView() // Создадим этот файл следующим шагом
+                AddObjectView()
+            }
+            .task {
+                await viewModel.fetchObjects()
             }
         }
         

@@ -13,7 +13,7 @@ class ProfileViewModel: ObservableObject {
     @Published var editingProfile: ProfileModel? = nil
     
     func startEditing() {
-            editingProfile = profile
+        editingProfile = profile
     }
         
     func cancelEditing() {
@@ -92,14 +92,6 @@ class ProfileViewModel: ObservableObject {
             isLoading.toggle()
         } catch let error {
             print(error)
-        }
-    }
-    
-    func changeProfile() async {
-        do {
-            
-        } catch let error {
-            
         }
     }
 }

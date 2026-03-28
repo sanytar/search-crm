@@ -16,16 +16,13 @@ struct ObjectsView: View {
                 Text("Объект")
                 Text("Объект")
             }
-            .navigationTitle("objects.title")
-            
-            .searchable(text: $searchText, prompt: "Поиск по названию")
-            
-            .toolbar {
-                CRMToolbarButton(isOpen: $isShowingFilter, icon: "line.3.horizontal.decrease.circle", position: .topBarLeading)
-            
-                CRMToolbarButton(isOpen: $isShowingAddModal, icon: "plus", position: .topBarTrailing)
-            }
-            
+            .crmListHeader(
+                searchText: $searchText,
+                title: "objects.title",
+                searchPlaceholder: "Поиск по названию",
+                onAdd: { isShowingAddModal = true } ,
+                onFilter: { isShowingFilter = true }
+            )
             .sheet(isPresented: $isShowingFilter) {
                 Text("Фильтры")
                     .presentationDetents([.medium])

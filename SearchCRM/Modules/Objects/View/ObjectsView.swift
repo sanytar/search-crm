@@ -16,18 +16,6 @@ struct ObjectsView: View {
                 Text("Объект")
                 Text("Объект")
             }
-<<<<<<< Updated upstream
-            .navigationTitle("objects.title")
-            
-            .searchable(text: $searchText, prompt: "Поиск по названию")
-            
-            .toolbar {
-                CRMToolbarButton(isOpen: $isShowingFilter, icon: "line.3.horizontal.decrease.circle", position: .topBarLeading)
-            
-                CRMToolbarButton(isOpen: $isShowingAddModal, icon: "plus", position: .topBarTrailing)
-            }
-            
-=======
             .crmListHeader(
                 searchText: $searchText,
                 title: "objects.title",
@@ -35,19 +23,15 @@ struct ObjectsView: View {
                 onAdd: { isShowingAddModal = true } ,
                 onFilter: { isShowingFilter = true }
             )
->>>>>>> Stashed changes
             .sheet(isPresented: $isShowingFilter) {
                 Text("Фильтры")
                     .presentationDetents([.medium])
             }
             .sheet(isPresented: $isShowingAddModal) {
                 AddObjectView()
-<<<<<<< Updated upstream
             }
             .task {
                 await viewModel.fetchObjects()
-=======
->>>>>>> Stashed changes
             }
         }
         

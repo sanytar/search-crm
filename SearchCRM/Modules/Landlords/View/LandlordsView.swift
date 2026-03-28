@@ -25,15 +25,16 @@ struct LandlordsView: View {
                     ProgressView()
                 }
             }
-            .toolbar {
-                CRMToolbarButton(isOpen: $isAddModalOpen, icon: "plus", position: .topBarTrailing)
-                CRMToolbarButton(isOpen: $isShowingFilter, icon: "line.3.horizontal.decrease.circle", position: .topBarLeading)
-            }
+            .crmListHeader(
+                searchText: $viewModel.searchQuery,
+                title: "landlords.title",
+                searchPlaceholder: "Поиск по названию",
+                onAdd: { isAddModalOpen = true},
+                onFilter: {isShowingFilter = true }
+            )
             .sheet(isPresented: $isAddModalOpen) {
                 LandlordCreateView(viewModel: viewModel)
             }
-            .navigationTitle("landlords.title")
-            .searchable(text: $viewModel.searchQuery, prompt: "Поиск по названию")
             .task() {
                 await viewModel.fetchLandlords()
             }

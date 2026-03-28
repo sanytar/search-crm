@@ -13,12 +13,13 @@ struct TenantsView: View {
                 Text("Арендатор")
                 Text("Арендатор")
             }
-            .toolbar {
-                CRMToolbarButton(isOpen: $isAddModalOpen, icon: "plus", position: .topBarTrailing)
-                CRMToolbarButton(isOpen: $isShowingFilter, icon: "line.3.horizontal.decrease.circle", position: .topBarLeading)
-            }
-            .navigationTitle("tenants.title")
-            .searchable(text: $searchText, prompt: "Поиск по названию")
+            .crmListHeader(
+                searchText: $searchText,
+                title: "tenants.title",
+                searchPlaceholder: "Поиск по названию",
+                onAdd: { isAddModalOpen = true},
+                onFilter: {isShowingFilter = true }
+            )
         }
     }
 }

@@ -1,4 +1,5 @@
 import Supabase
+import SwiftUI
 import Foundation
 import Combine
 
@@ -7,6 +8,7 @@ class AppState: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var isLoading: Bool = true
     
+    @AppStorage("appTheme") var theme: AppColor = .system
     // В AppState добавляешь
     
     init() {

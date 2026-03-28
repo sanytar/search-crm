@@ -1,5 +1,5 @@
 import SwiftUI
-
+// TODO: перенести модуль профиля на уровень Settings, убрать из View
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
     

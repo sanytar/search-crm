@@ -3,32 +3,17 @@ import SwiftUI
 struct AddObjectView: View {
     @Environment(\.dismiss) var dismiss
     
-    @State private var objectName = ""
-    @State private var address = ""
-    @State private var radius = ""
-    @State private var notes = ""
+    @StateObject var viewModel: ObjectsViewModel = ObjectsViewModel()
     
     var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text("Основная информация")) {
-                    TextField("Название объекта", text: $objectName)
-                    TextField("Адрес", text: $address)
+                Section("Основное") {
+//                    CRMFormField(name: "Тип объекта")
                 }
                 
-                Section(header: Text("Параметры")) {
-                    HStack {
-                        Text("Площадь")
-                        Spacer()
-                        TextField("например, 15", text: $radius)
-                            .keyboardType(.numberPad)
-                            .multilineTextAlignment(.trailing)
-                    }
-                }
-                
-                Section(header: Text("Комментарий")) {
-                    TextEditor(text: $notes)
-                        .frame(height: 100)
+                Section("Дополнительная информация") {
+                    
                 }
             }
             .navigationTitle("Новый объект")
@@ -44,7 +29,6 @@ struct AddObjectView: View {
                     Button("Добавить") {
                         dismiss()
                     }
-                    .disabled(objectName.isEmpty)
                 }
             }
         }

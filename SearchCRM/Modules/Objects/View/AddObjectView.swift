@@ -9,28 +9,67 @@ struct AddObjectView: View {
         NavigationStack {
             Form {
                 Section("Основное") {
-//                    CRMFormField(name: "Тип объекта")
+                    Picker("Тип", selection: $viewModel.object.type) {
+                        ForEach(ObjectType.allCases, id: \.self) { item in
+                            Text(item.title).tag(item)
+                        }
+                        
+                    }
+                    CRMFormField(name: "Цена", keyBoardType: .numberPad, text: Binding(
+                        get: {String(viewModel.object.price)},
+                        set: {viewModel.object.price = Int($0) ?? 0}
+                        
+                    ))
+                    
+                    CRMFormField(name: "Кол-во комнат", keyBoardType: .numberPad, text: Binding(
+                        get: {String(viewModel.object.price)},
+                        set: {viewModel.object.price = Int($0) ?? 0}
+                        
+                    ))
+                    
+                    CRMFormField(name: "Адрес", text: Binding(
+                        get: {viewModel.object.address},
+                        set: {viewModel.object.address = $0}
+                        
+                    ))
+                    
+                    CRMFormField(name: "Площадь",keyBoardType: .numberPad, text: Binding(
+                        get: {String(viewModel.object.area ?? 0)},
+                        set: {viewModel.object.area = Int($0) ?? 0}
+                    ))
                 }
                 
-                Section("Дополнительная информация") {
-                    
+                Section("Арендодатель") {
+                    Text("Тут будет выбор арендодателя")
+                }
+                
+                Section("Комментарий") {
+                    TextEditor(text: Binding(
+                        get: { viewModel.object.comment ?? "" },
+                        set: { viewModel.object.comment = $0 }
+                    ))
+                        .frame(height: 100)
                 }
             }
-            .navigationTitle("Новый объект")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
+            
+            .toolbar() {
+                ToolbarItem(placement: .topBarLeading) {
                     Button("Отмена") {
                         dismiss()
                     }
                 }
-                
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Добавить") {
-                        dismiss()
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        Task {
+                            dismiss()
+                        }
+                    } label: {
+                        Text("Сохранить")
                     }
                 }
             }
+            
+            .crmTitleNav(title: "Новый объект", titleMode: .inline)
         }
     }
 }

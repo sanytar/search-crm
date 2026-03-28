@@ -70,8 +70,7 @@ struct LandlordCreateView: View {
                     }
                 }
             }
-                .navigationTitle("Новый арендодатель")
-                .navigationBarTitleDisplayMode(.inline)
+                .crmTitleNav(title: "Новый арендодатель", titleMode: .inline)
                 .onAppear {
                     viewModel.landlord = LandlordModel(firstName: "", phone: "")
                 }

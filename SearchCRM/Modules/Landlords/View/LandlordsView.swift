@@ -1,5 +1,4 @@
 import SwiftUI
-import Combine
 
 struct LandlordsView: View {
     @State private var isAddModalOpen: Bool = false
@@ -9,36 +8,28 @@ struct LandlordsView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.landlords ?? []) { item in
-                    VStack(alignment: .leading) {
-                            Text(item.firstName)
-                                .font(.headline)
-                            Text(item.phone)
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                        }
-                }
-            }
-            .overlay {
-                if viewModel.isLoading {
-                    ProgressView()
-                }
-            }
+            CRMItemList(landlords: viewModel.landlords)
+            .crmProgress(isShowing: viewModel.isLoading)
             .crmListHeader(
                 searchText: $viewModel.searchQuery,
                 title: "landlords.title",
                 searchPlaceholder: "Поиск по названию",
-                onAdd: { isAddModalOpen = true},
+                onAdd: { isAddModalOpen = true },
                 onFilter: {isShowingFilter = true }
             )
             .sheet(isPresented: $isAddModalOpen) {
                 LandlordCreateView(viewModel: viewModel)
             }
-            .task() {
+            .sheet(isPresented: $isShowingFilter) {
+                Text("Фильтры не реализованы")
+            }
+            .task {
                 await viewModel.fetchLandlords()
             }
         }
     }
 }
 
+#Preview {
+    LandlordsView()
+}

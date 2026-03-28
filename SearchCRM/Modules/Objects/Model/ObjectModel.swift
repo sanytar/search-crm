@@ -1,8 +1,15 @@
 import Foundation
 
-enum ObjectType: String, Codable {
+enum ObjectType: String, Codable, CaseIterable {
     case apartment
     case house
+    
+    var title: String {
+        switch self {
+            case .apartment: return "Квартира"
+            case .house: return "Дом"
+        }
+    }
 }
 
 struct PropertyModel: Codable, Identifiable {
@@ -26,12 +33,3 @@ struct PropertyModel: Codable, Identifiable {
         case area
     }
 }
-
-
-//type — Тип объекта
-//rooms — Количество комнат
-//area — Площадь
-//price — Стоимость
-//address — Адрес
-//landlord_id — Привязка к арендодателю
-//comment — Комментарий

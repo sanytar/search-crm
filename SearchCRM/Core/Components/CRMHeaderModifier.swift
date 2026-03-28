@@ -11,8 +11,8 @@ struct CRMListHeader: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+            .searchable(text: $searchText)
             .navigationTitle(title)
-            .searchable(text: $searchText, prompt: searchPlaceholder)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: onFilter) {
@@ -24,9 +24,7 @@ struct CRMListHeader: ViewModifier {
                         Image(systemName: "plus")
                     }
                 }
-            }
-            
-            
+        }
     }
 }
 
@@ -35,6 +33,3 @@ extension View {
         modifier(CRMListHeader(searchText: searchText, title: title, searchPlaceholder: searchPlaceholder, onAdd: onAdd, onFilter: onFilter))
     }
 }
-// 1. Title
-// 2. Search
-// 3. toolbar with 2 items ( filter, add entity )

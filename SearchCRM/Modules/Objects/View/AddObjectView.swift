@@ -22,8 +22,8 @@ struct AddObjectView: View {
                     ))
                     
                     CRMFormField(name: "Кол-во комнат", keyBoardType: .numberPad, text: Binding(
-                        get: {String(viewModel.object.price)},
-                        set: {viewModel.object.price = Int($0) ?? 0}
+                        get: {String(viewModel.object.rooms)},
+                        set: {viewModel.object.rooms = Int($0) ?? 0}
                         
                     ))
                     
@@ -61,6 +61,7 @@ struct AddObjectView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         Task {
+                            await viewModel.createObject()
                             dismiss()
                         }
                     } label: {

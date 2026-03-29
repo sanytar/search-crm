@@ -8,7 +8,7 @@ struct LandlordsView: View {
     
     var body: some View {
         NavigationStack {
-            CRMItemList(landlords: viewModel.landlords)
+            CRMItemList(landlords: viewModel.landlords, isLoading: viewModel.isLoading)
             .crmProgress(isShowing: viewModel.isLoading)
             .crmListHeader(
                 searchText: $viewModel.searchQuery,

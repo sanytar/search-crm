@@ -66,6 +66,7 @@ struct AddObjectView: View {
                     Button {
                         Task {
                             await viewModel.createObject()
+                            Helpers.doNotificationFeedback(type: .success)
                             dismiss()
                         }
                     } label: {

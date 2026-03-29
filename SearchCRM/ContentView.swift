@@ -3,6 +3,7 @@ import Supabase
 
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
+    @State private var selectedTab: AppTab = .objects
     
 //    save session
     func handleIncomingURL(_ url: URL) async {
@@ -23,13 +24,15 @@ struct ContentView: View {
                             ProgressView()
                         }
             } else if appState.isAuthenticated {
-                TabView  {
+                TabView(selection: $selectedTab,)  {
                     ForEach(AppTab.allCases) { tab in
                         tab.destination
                             .tabItem {
                                 Label(tab.title, systemImage: tab.icon)
-                            }
+                            }.tag(tab)
                     }
+                }.onChange(of: selectedTab) {
+                    Helpers.doFeedback(type: .light)
                 }
             } else {
                 AuthView()

@@ -43,6 +43,10 @@ struct AddObjectView: View {
                     Text("Тут будет выбор арендодателя")
                 }
                 
+                Section("Фотографии") {
+                    CRMPhotoPicker()
+                }
+                
                 Section("Комментарий") {
                     TextEditor(text: Binding(
                         get: { viewModel.object.comment ?? "" },

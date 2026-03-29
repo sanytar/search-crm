@@ -4,6 +4,7 @@ import Supabase
 
 class ObjectsViewModel: ObservableObject {
     @Published var object: PropertyModel = PropertyModel(type: .apartment, price: 0, rooms: 0, address: "")
+    @Published var objects: [PropertyModel]? = nil
     
     @Published var isLoading: Bool = false
     
@@ -12,14 +13,31 @@ class ObjectsViewModel: ObservableObject {
         isLoading = true
         
         do {
-            try await supabase
-                .from("objects")
+            objects = try await supabase
+                .from("properties")
                 .select("id, type, price, rooms, address")
                 .execute()
                 .value
         } catch let error {
             print(error)
         }
+        isLoading = false
+    }
+    
+    func createObject() async {
+        isLoading = true
+        
+        do {
+            try await supabase
+                .from("properties")
+                .insert(object)
+                .execute()
+                .value
+            await fetchObjects()
+        } catch let error {
+            print(error)
+        }
+        
         isLoading = false
     }
     

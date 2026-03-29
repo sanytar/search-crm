@@ -34,6 +34,8 @@ class LandlordViewModel: ObservableObject {
                 .from("landlords")
                 .execute()
                 .value
+            
+        print(landlords)
         } catch let error {
             print(error)
         }

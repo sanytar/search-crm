@@ -134,7 +134,10 @@ struct ProfileView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(isEditing ? "settings.profile.save" : "settings.profile.edit", action: {
                     if isEditing {
-                        Task { await viewModel.saveProfile() }
+                        Task {
+                            await viewModel.saveProfile()
+                            Helpers.doNotificationFeedback(type: .success)
+                        }
                     } else {
                         viewModel.startEditing()
                     }

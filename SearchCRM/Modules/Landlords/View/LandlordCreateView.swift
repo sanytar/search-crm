@@ -59,6 +59,7 @@ struct LandlordCreateView: View {
                     Button {
                         Task {
                             await viewModel.createLandlord()
+                            Helpers.doNotificationFeedback(type: .success)
                             dismiss()
                         }
                     } label: {

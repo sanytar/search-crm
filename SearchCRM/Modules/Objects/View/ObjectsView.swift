@@ -16,16 +16,16 @@ struct ObjectsView: View {
                         ForEach(viewModel.objects ?? []) { object in
                             VStack(alignment: .leading, spacing: 4) {
                                 HStack {
-                                    Text("\(object.type.title) • \(object.rooms) комн.")
+                                    Text("\(object.type.title) • \(object.rooms ?? 0) комн.")
                                             .font(.headline)
                                         Spacer()
                                         
-                                        Text("\(object.price) ₽")
+                                    Text("\(object.price ?? 0) ₽")
                                             .font(.headline)
                                             .foregroundStyle(.blue)
                                 }
                                 HStack {
-                                    Text(object.address)
+                                    Text(object.address ?? "")
                                         .font(.subheadline)
                                         .foregroundStyle(.secondary)
                                     Spacer()
@@ -54,7 +54,11 @@ struct ObjectsView: View {
                                     }
                                     
                                     Button(role: .destructive) {
-                                        // удалить
+                                        Task {
+                                            if await viewModel.deleteObject(id: object.id) {
+//                                                await viewModel.fetchObjects()
+                                            }
+                                        }
                                     } label: {
                                         Label("Удалить", systemImage: "trash")
                                     }

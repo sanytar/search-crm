@@ -16,26 +16,23 @@ struct AddObjectView: View {
                         
                     }
                     CRMFormField(name: "Цена", keyBoardType: .numberPad, text: Binding(
-                        get: {String(viewModel.object.price)},
-                        set: {viewModel.object.price = Int($0) ?? 0}
-                        
+                        get: { viewModel.object.price != nil ? String(viewModel.object.price!) : "" },
+                        set: { viewModel.object.price = Int($0) }
                     ))
                     
                     CRMFormField(name: "Кол-во комнат", keyBoardType: .numberPad, text: Binding(
-                        get: {String(viewModel.object.rooms)},
-                        set: {viewModel.object.rooms = Int($0) ?? 0}
-                        
+                        get: { viewModel.object.rooms != nil ? String(viewModel.object.rooms!) : "" },
+                        set: { viewModel.object.rooms = Int($0) }
                     ))
                     
                     CRMFormField(name: "Адрес", text: Binding(
-                        get: {viewModel.object.address},
-                        set: {viewModel.object.address = $0}
-                        
+                        get: { viewModel.object.address ?? "" },
+                        set: { viewModel.object.address = $0.isEmpty ? nil : $0 }
                     ))
                     
-                    CRMFormField(name: "Площадь",keyBoardType: .numberPad, text: Binding(
-                        get: {String(viewModel.object.area ?? 0)},
-                        set: {viewModel.object.area = Int($0) ?? 0}
+                    CRMFormField(name: "Площадь", keyBoardType: .numberPad, text: Binding(
+                        get: { viewModel.object.area.map(String.init) ?? "" },
+                        set: { viewModel.object.area = Int($0) }
                     ))
                 }
                 
@@ -50,7 +47,7 @@ struct AddObjectView: View {
                 Section("Комментарий") {
                     TextEditor(text: Binding(
                         get: { viewModel.object.comment ?? "" },
-                        set: { viewModel.object.comment = $0 }
+                        set: { viewModel.object.comment = $0.isEmpty ? nil : $0 }
                     ))
                         .frame(height: 100)
                 }
@@ -65,9 +62,11 @@ struct AddObjectView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         Task {
-                            await viewModel.createObject()
-                            Helpers.doNotificationFeedback(type: .success)
-                            dismiss()
+                            if await viewModel.createObject() {
+                                Helpers.doNotificationFeedback(type: .success)
+                                dismiss()
+                            }
+                            
                         }
                     } label: {
                         Text("Сохранить")
@@ -79,7 +78,7 @@ struct AddObjectView: View {
         }
     }
 }
-
-#Preview {
-    AddObjectView()
-}
+//
+//#Preview {
+//    AddObjectView()
+//}

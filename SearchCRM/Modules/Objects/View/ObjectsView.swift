@@ -11,6 +11,16 @@ struct ObjectsView: View {
     
     @EnvironmentObject var toast: ToastManager
     
+    @State var sortOption: SortMenuList = .priceDesc {
+        didSet {
+            Task {
+                print("Запрос ?")
+                await viewModel.fetchObjects(sort: sortOption)
+                print("Запрос 1")
+            }
+        }
+    }
+    
     var body: some View {
         NavigationStack {
                 List {
@@ -80,7 +90,8 @@ struct ObjectsView: View {
                     title: "objects.title",
                     searchPlaceholder: "Поиск по названию",
                     onAdd: { isShowingAddModal = true } ,
-                    onFilter: { isShowingFilter = true }
+                    onFilter: { isShowingFilter = true },
+                    sortOption: $viewModel.sortOption
                 )
                 .sheet(isPresented: $isShowingFilter) {
                     Text("Фильтры")

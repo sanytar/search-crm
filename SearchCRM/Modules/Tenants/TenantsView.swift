@@ -5,6 +5,8 @@ struct TenantsView: View {
     @State private var isShowingFilter: Bool = false
     
     @State private var searchText: String = ""
+    
+    @State var sortOption: SortMenuList = .areaAsc
     var body: some View {
         NavigationStack {
             
@@ -16,7 +18,8 @@ struct TenantsView: View {
                 title: "tenants.title",
                 searchPlaceholder: "Поиск по названию",
                 onAdd: { isAddModalOpen = true },
-                onFilter: {isShowingFilter = true }
+                onFilter: {isShowingFilter = true },
+                sortOption: $sortOption
             )
             .sheet(isPresented: $isAddModalOpen) {
 //                открыть добавление арендатора

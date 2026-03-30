@@ -9,6 +9,8 @@ struct ObjectsView: View {
     
     @State var selectedChip: ObjectChips = .all
     
+    @EnvironmentObject var toast: ToastManager
+    
     var body: some View {
         NavigationStack {
                 List {
@@ -56,7 +58,7 @@ struct ObjectsView: View {
                                     Button(role: .destructive) {
                                         Task {
                                             if await viewModel.deleteObject(id: object.id) {
-//                                                await viewModel.fetchObjects()
+                                                toast.show("Объект удален", type: .success)
                                             }
                                         }
                                     } label: {

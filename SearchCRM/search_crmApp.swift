@@ -11,11 +11,14 @@ import Supabase
 @main
 struct search_crmApp: App {
     @StateObject private var appState = AppState()
+    @StateObject private var toast = ToastManager()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(appState)
+                .environmentObject(toast)
+                .overlay { ToastView().environmentObject(toast) }
                 .onOpenURL  { url in
                     Task {
                         print("📨 URL: \(url)")

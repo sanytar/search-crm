@@ -12,6 +12,7 @@
 		42AB54042F73E6DC008CA7AE /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 42AB54032F73E6DC008CA7AE /* Realtime */; };
 		42AB54062F73E6DC008CA7AE /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 42AB54052F73E6DC008CA7AE /* Storage */; };
 		42AB540E2F73E9A3008CA7AE /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 42AB540D2F73E9A3008CA7AE /* Supabase */; };
+		42EB01BF2F7A9D16006E2F41 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 42EB01BE2F7A9D16006E2F41 /* AlertToast */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 				42AB540E2F73E9A3008CA7AE /* Supabase in Frameworks */,
 				42AB54062F73E6DC008CA7AE /* Storage in Frameworks */,
 				42AB54042F73E6DC008CA7AE /* Realtime in Frameworks */,
+				42EB01BF2F7A9D16006E2F41 /* AlertToast in Frameworks */,
 				42AB54022F73E6DC008CA7AE /* PostgREST in Frameworks */,
 				42AB54002F73E6DC008CA7AE /* Auth in Frameworks */,
 			);
@@ -93,6 +95,7 @@
 				42AB54032F73E6DC008CA7AE /* Realtime */,
 				42AB54052F73E6DC008CA7AE /* Storage */,
 				42AB540D2F73E9A3008CA7AE /* Supabase */,
+				42EB01BE2F7A9D16006E2F41 /* AlertToast */,
 			);
 			productName = "search-crm";
 			productReference = 42EE03E12F73A49F005AA717 /* search-crm.app */;
@@ -125,6 +128,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				42AB53FE2F73E6DC008CA7AE /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				42EB01BD2F7A9D16006E2F41 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 42EE03E22F73A49F005AA717 /* Products */;
@@ -380,6 +384,14 @@
 				minimumVersion = 2.5.1;
 			};
 		};
+		42EB01BD2F7A9D16006E2F41 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.9;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -407,6 +419,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 42AB53FE2F73E6DC008CA7AE /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
+		};
+		42EB01BE2F7A9D16006E2F41 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42EB01BD2F7A9D16006E2F41 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

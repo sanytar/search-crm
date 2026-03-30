@@ -5,6 +5,8 @@ struct AddObjectView: View {
     
     @StateObject var viewModel: ObjectsViewModel = ObjectsViewModel()
     
+    @EnvironmentObject var toast: ToastManager
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -65,6 +67,7 @@ struct AddObjectView: View {
                             if await viewModel.createObject() {
                                 Helpers.doNotificationFeedback(type: .success)
                                 dismiss()
+                                toast.show("Объект успешно создан", type: .success)
                             }
                             
                         }

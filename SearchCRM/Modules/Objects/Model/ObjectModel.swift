@@ -21,6 +21,7 @@ struct PropertyModel: Codable, Identifiable {
     var landlordId: UUID?
     var comment: String?
     var area: Int?
+    var isRented: Bool
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,5 +32,20 @@ struct PropertyModel: Codable, Identifiable {
         case landlordId = "landlord_id"
         case comment
         case area
+        case isRented = "is_rented"
+    }
+}
+
+enum ObjectChips: String, CaseIterable, Codable {
+    case all
+    case isNotRented
+    case isNotLandlord
+    
+    var title: String {
+        switch self {
+            case .all: return "Все"
+            case .isNotRented: return "Свободные"
+            case .isNotLandlord: return "Нет собственника"
+        }
     }
 }

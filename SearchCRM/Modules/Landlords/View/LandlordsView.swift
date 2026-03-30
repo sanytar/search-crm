@@ -6,6 +6,8 @@ struct LandlordsView: View {
     
     @StateObject var viewModel: LandlordViewModel = LandlordViewModel()
     
+    @State var sortOption: SortMenuList = .areaAsc
+    
     var body: some View {
         NavigationStack {
             CRMItemList(landlords: viewModel.landlords, isLoading: viewModel.isLoading)
@@ -15,7 +17,8 @@ struct LandlordsView: View {
                 title: "landlords.title",
                 searchPlaceholder: "Поиск по названию",
                 onAdd: { isAddModalOpen = true },
-                onFilter: {isShowingFilter = true }
+                onFilter: {isShowingFilter = true },
+                sortOption: $sortOption
             )
             .sheet(isPresented: $isAddModalOpen) {
                 LandlordCreateView(viewModel: viewModel)

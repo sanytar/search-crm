@@ -8,8 +8,13 @@ class ObjectsViewModel: ObservableObject {
     
     @Published var isLoading: Bool = false
     
+    @Published var sortOption: SortMenuList = .priceDesc {
+        didSet {
+            Task { await fetchObjects(sort: sortOption) }
+        }
+    }
     
-    func fetchObjects(mainFilter: ObjectChips = .all) async {
+    func fetchObjects(mainFilter: ObjectChips = .all, sort: SortMenuList = .priceAsc) async {
         isLoading = true
         
         do {
@@ -18,15 +23,27 @@ class ObjectsViewModel: ObservableObject {
                         .select()
                     
                     switch mainFilter {
-                    case .all:
-                        break
-                    case .isNotRented:
-                        query = query.eq("is_rented", value: false)
-                    case .isNotLandlord:
-                        query = query.is("landlord_id", value: .none)
+                        case .all:
+                            break
+                        case .isNotRented:
+                            query = query.eq("is_rented", value: false)
+                        case .isNotLandlord:
+                            query = query.is("landlord_id", value: .none)
+                    }
+            
+                    let ascending: Bool
+                    let column: String
+            
+                    switch sort {
+                            case .priceDesc: column = "price";     ascending = false
+                            case .priceAsc:  column = "price";     ascending = true
+                            case .areaDesc:  column = "area";      ascending = false
+                            case .areaAsc:   column = "area";      ascending = true
+                            case .freeFirst: column = "is_rented"; ascending = true
                     }
             
             objects = try await query
+                        .order(column, ascending: ascending)
                         .execute()
                         .value
         } catch let error {

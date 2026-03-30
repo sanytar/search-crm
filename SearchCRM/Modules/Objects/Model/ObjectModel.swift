@@ -13,11 +13,11 @@ enum ObjectType: String, Codable, CaseIterable {
 }
 
 struct PropertyModel: Codable, Identifiable {
-    var id: UUID?
+    var id: UUID
     var type: ObjectType
-    var price: Int
-    var rooms: Int
-    var address: String
+    var price: Int?
+    var rooms: Int?
+    var address: String?
     var landlordId: UUID?
     var comment: String?
     var area: Int?
@@ -25,6 +25,28 @@ struct PropertyModel: Codable, Identifiable {
     
     enum CodingKeys: String, CodingKey {
         case id
+        case price
+        case rooms
+        case type
+        case address
+        case landlordId = "landlord_id"
+        case comment
+        case area
+        case isRented = "is_rented"
+    }
+}
+
+struct newPropertyModel: Codable {
+    var type: ObjectType
+    var price: Int?
+    var rooms: Int?
+    var address: String?
+    var landlordId: UUID?
+    var comment: String?
+    var area: Int?
+    var isRented: Bool
+    
+    enum CodingKeys: String, CodingKey {
         case price
         case rooms
         case type

@@ -3,7 +3,7 @@ import Combine
 import Supabase
 
 class ObjectsViewModel: ObservableObject {
-    @Published var object: PropertyModel = PropertyModel(type: .apartment, price: 0, rooms: 0, address: "", isRented: false)
+    @Published var object: newPropertyModel = newPropertyModel(type: .apartment, isRented: false)
     @Published var objects: [PropertyModel]? = nil
     
     @Published var isLoading: Bool = false
@@ -19,7 +19,7 @@ class ObjectsViewModel: ObservableObject {
                     
                     switch mainFilter {
                     case .all:
-                        break // без фильтра
+                        break
                     case .isNotRented:
                         query = query.eq("is_rented", value: false)
                     case .isNotLandlord:
@@ -35,21 +35,56 @@ class ObjectsViewModel: ObservableObject {
         isLoading = false
     }
     
-    func createObject() async {
+    func createObject() async -> Bool {
         isLoading = true
-        
-        do {
-            try await supabase
-                .from("properties")
-                .insert(object)
-                .execute()
-                .value
-            await fetchObjects()
-        } catch let error {
-            print(error)
-        }
-        
-        isLoading = false
+            
+            do {
+                let created: PropertyModel = try await supabase
+                    .from("properties")
+                    .insert(object)
+                    .select()
+                    .single()
+                    .execute()
+                    .value
+                print(created)
+                await MainActor.run {
+                    withAnimation {
+                        objects?.append(created)
+                    }
+                }
+                
+                isLoading = false
+                return true
+            } catch let error {
+                print(error)
+                isLoading = false
+                return false
+            }
     }
     
+    func deleteObject(id: UUID) async -> Bool {
+        do {
+            print(id)
+            try await supabase
+                .from("properties")
+                .delete()
+                .eq("id", value: id)
+                .execute()
+            
+            await MainActor.run {
+                withAnimation {
+                    objects?.removeAll { $0.id == id }
+                }
+            }
+            
+        // TODO: подумать как удалять просто на фронте после статуса ОК с бэка
+            return true
+        } catch {
+            print("Ошибка удаления: \(error)")
+        }
+        return false
+    }
+   
+    
 }
+

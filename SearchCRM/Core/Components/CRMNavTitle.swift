@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CRMNavTitleView: ViewModifier {
-    let title: String
+    let title: LocalizedStringKey
     let titleMode: NavigationBarItem.TitleDisplayMode
     
     func body(content: Content) -> some View {
@@ -12,7 +12,7 @@ struct CRMNavTitleView: ViewModifier {
 }
 
 extension View {
-    func crmTitleNav(title: String, titleMode: NavigationBarItem.TitleDisplayMode) -> some View {
+    func crmTitleNav(title: LocalizedStringKey, titleMode: NavigationBarItem.TitleDisplayMode) -> some View {
         self.modifier(CRMNavTitleView(title: title, titleMode: titleMode))
     }
 }

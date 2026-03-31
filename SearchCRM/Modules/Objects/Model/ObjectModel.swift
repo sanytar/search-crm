@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 enum ObjectType: String, Codable, CaseIterable {
     case apartment
@@ -6,8 +7,8 @@ enum ObjectType: String, Codable, CaseIterable {
     
     var title: String {
         switch self {
-            case .apartment: return "Квартира"
-            case .house: return "Дом"
+        case .apartment: return String(localized: "objects.apartment")
+        case .house: return String(localized: "objects.house")
         }
     }
 }
@@ -21,12 +22,14 @@ struct PropertyModel: Codable, Identifiable {
     var landlordId: UUID?
     var comment: String?
     var area: Int?
+    var photos: [String]?
     var isRented: Bool
     
     enum CodingKeys: String, CodingKey {
         case id
         case price
         case rooms
+        case photos
         case type
         case address
         case landlordId = "landlord_id"
@@ -65,17 +68,28 @@ enum ObjectChips: String, CaseIterable, Codable {
     
     var title: String {
         switch self {
-            case .all: return "Все"
-            case .isNotRented: return "Свободные"
-            case .isNotLandlord: return "Нет собственника"
+            case .all: return String(localized: "objects.chips.all")
+            case .isNotRented: return String(localized: "objects.chips.available")
+            case .isNotLandlord: return String(localized: "objects.chips.isNotLandlord")
         }
     }
 }
 
 enum SortObjects: String, CaseIterable, SortOption {
-    case priceDesc = "Сначала дорогие"
-    case priceAsc = "Сначала дешевые"
-    case areaDesc = "Большая площадь"
-    case areaAsc = "Маленькая площадь"
-    case freeFirst = "Сначала свободные"
+    case priceDesc
+    case priceAsc
+    case areaDesc
+    case areaAsc
+    case freeFirst
+    
+    var title: String {
+        switch self {
+        case .priceDesc: return String(localized: "objects.sort.priceDesc")
+        case .priceAsc: return String(localized: "objects.sort.priceAsc")
+        case .areaDesc: return String(localized: "objects.sort.areaDesc")
+        case .areaAsc: return String(localized: "objects.sort.areaAsc")
+        case .freeFirst: return String(localized: "objects.sort.freeFirst")
+        }
+        
+    }
 }

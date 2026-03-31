@@ -1,1 +1,3 @@
-protocol SortOption: RawRepresentable, CaseIterable, Hashable where RawValue == String, AllCases: RandomAccessCollection {}
+protocol SortOption: RawRepresentable, CaseIterable, Hashable where RawValue == String, AllCases: RandomAccessCollection {
+    var title: String { get }
+}

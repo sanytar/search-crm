@@ -10,43 +10,43 @@ struct AddObjectView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Основное") {
-                    Picker("Тип", selection: $viewModel.object.type) {
+                Section("settings.profile.general") {
+                    Picker("objects.type", selection: $viewModel.object.type) {
                         ForEach(ObjectType.allCases, id: \.self) { item in
                             Text(item.title).tag(item)
                         }
                         
                     }
-                    CRMFormField(name: "Цена", keyBoardType: .numberPad, text: Binding(
+                    CRMFormField(name: "objects.price", keyBoardType: .numberPad, text: Binding(
                         get: { viewModel.object.price != nil ? String(viewModel.object.price!) : "" },
                         set: { viewModel.object.price = Int($0) }
                     ))
                     
-                    CRMFormField(name: "Кол-во комнат", keyBoardType: .numberPad, text: Binding(
+                    CRMFormField(name: "objects.rooms", keyBoardType: .numberPad, text: Binding(
                         get: { viewModel.object.rooms != nil ? String(viewModel.object.rooms!) : "" },
                         set: { viewModel.object.rooms = Int($0) }
                     ))
                     
-                    CRMFormField(name: "Адрес", text: Binding(
+                    CRMFormField(name: "objects.address", text: Binding(
                         get: { viewModel.object.address ?? "" },
                         set: { viewModel.object.address = $0.isEmpty ? nil : $0 }
                     ))
                     
-                    CRMFormField(name: "Площадь", keyBoardType: .numberPad, text: Binding(
+                    CRMFormField(name: "objects.area", keyBoardType: .numberPad, text: Binding(
                         get: { viewModel.object.area.map(String.init) ?? "" },
                         set: { viewModel.object.area = Int($0) }
                     ))
                 }
                 
-                Section("Арендодатель") {
+                Section("landlord.title") {
                     Text("Тут будет выбор арендодателя")
                 }
                 
-                Section("Фотографии") {
+                Section("general.photos") {
                     CRMPhotoPicker()
                 }
                 
-                Section("Комментарий") {
+                Section("comment") {
                     TextEditor(text: Binding(
                         get: { viewModel.object.comment ?? "" },
                         set: { viewModel.object.comment = $0.isEmpty ? nil : $0 }
@@ -57,7 +57,7 @@ struct AddObjectView: View {
             
             .toolbar() {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Отмена") {
+                    Button("settings.logout.cancel") {
                         dismiss()
                     }
                 }
@@ -67,17 +67,17 @@ struct AddObjectView: View {
                             if await viewModel.createObject() {
                                 Helpers.doNotificationFeedback(type: .success)
                                 dismiss()
-                                toast.show("Объект успешно создан", type: .success)
+                                toast.show("objects.create.success", type: .success)
                             }
                             
                         }
                     } label: {
-                        Text("Сохранить")
+                        Text("settings.profile.save")
                     }
                 }
             }
             
-            .crmTitleNav(title: "Новый объект", titleMode: .inline)
+            .crmTitleNav(title: "objects.new", titleMode: .inline)
         }
     }
 }

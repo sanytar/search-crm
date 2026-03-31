@@ -72,7 +72,7 @@ enum ObjectChips: String, CaseIterable, Codable {
     }
 }
 
-enum SortMenuList: String, CaseIterable {
+enum SortObjects: String, CaseIterable, SortOption {
     case priceDesc = "Сначала дорогие"
     case priceAsc = "Сначала дешевые"
     case areaDesc = "Большая площадь"

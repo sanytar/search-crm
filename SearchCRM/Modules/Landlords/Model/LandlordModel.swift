@@ -22,3 +22,8 @@ struct LandlordModel: Codable, Identifiable  {
         case comment
     }
 }
+
+enum LandlordSort: String, SortOption {
+    case byName = "По имени"
+    case byDate = "По дате"
+}

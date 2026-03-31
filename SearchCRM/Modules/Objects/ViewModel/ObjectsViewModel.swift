@@ -8,13 +8,13 @@ class ObjectsViewModel: ObservableObject {
     
     @Published var isLoading: Bool = false
     
-    @Published var sortOption: SortMenuList = .priceDesc {
+    @Published var sortOption: SortObjects = .priceDesc {
         didSet {
             Task { await fetchObjects(sort: sortOption) }
         }
     }
     
-    func fetchObjects(mainFilter: ObjectChips = .all, sort: SortMenuList = .priceAsc) async {
+    func fetchObjects(mainFilter: ObjectChips = .all, sort: SortObjects = .priceAsc) async {
         isLoading = true
         
         do {

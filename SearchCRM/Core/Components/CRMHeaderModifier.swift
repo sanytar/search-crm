@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CRMListHeader: ViewModifier {
+struct CRMListHeader<Sort: SortOption>: ViewModifier {
     @Binding var searchText: String
     
     let title: LocalizedStringKey
@@ -9,7 +9,7 @@ struct CRMListHeader: ViewModifier {
     var onAdd: () -> Void
     var onFilter: () -> Void
     
-    @Binding var sortOption: SortMenuList
+    @Binding var sortOption: Sort   
     
     func body(content: Content) -> some View {
         content
@@ -19,7 +19,7 @@ struct CRMListHeader: ViewModifier {
                 ToolbarItem(placement: .topBarLeading) {
                     Menu {
                         Picker("Сортировка", selection: $sortOption) {
-                            ForEach(SortMenuList.allCases, id: \.self) { item in
+                            ForEach(Sort.allCases, id: \.self) { item in
                                 Text(item.rawValue).tag(item)
                             }
                         }
@@ -40,13 +40,13 @@ struct CRMListHeader: ViewModifier {
 }
 
 extension View {
-    func crmListHeader(
+    func crmListHeader<Sort: SortOption>(
         searchText: Binding<String>,
            title: LocalizedStringKey,
            searchPlaceholder: String,
            onAdd: @escaping () -> Void,
            onFilter: @escaping () -> Void,
-    sortOption: Binding<SortMenuList>) -> some View {
+    sortOption: Binding<Sort>) -> some View {
         modifier(CRMListHeader(searchText: searchText, title: title, searchPlaceholder: searchPlaceholder, onAdd: onAdd, onFilter: onFilter, sortOption: sortOption))
     }
 }

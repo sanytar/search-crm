@@ -6,7 +6,7 @@ struct TenantsView: View {
     
     @State private var searchText: String = ""
     
-    @State var sortOption: SortMenuList = .areaAsc
+    @State var sortOption: SortTenants = .byName
     var body: some View {
         NavigationStack {
             

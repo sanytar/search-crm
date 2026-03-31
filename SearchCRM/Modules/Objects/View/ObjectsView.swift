@@ -11,7 +11,7 @@ struct ObjectsView: View {
     
     @EnvironmentObject var toast: ToastManager
     
-    @State var sortOption: SortMenuList = .priceDesc {
+    @State var sortOption: SortObjects = .priceAsc {
         didSet {
             Task {
                 print("Запрос ?")

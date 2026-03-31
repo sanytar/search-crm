@@ -6,7 +6,7 @@ struct LandlordsView: View {
     
     @StateObject var viewModel: LandlordViewModel = LandlordViewModel()
     
-    @State var sortOption: SortMenuList = .areaAsc
+    @State var sortOption: LandlordSort = .byName
     
     var body: some View {
         NavigationStack {

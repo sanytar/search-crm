@@ -5,7 +5,7 @@ import Supabase
 class LandlordViewModel: ObservableObject {
     @Published var isLoading = false
     // заполняемый арендодатель
-    @Published var landlord: LandlordModel = LandlordModel(firstName: "", phone: "")
+    @Published var landlord: NewLandlordModel = NewLandlordModel(firstName: "", phone: "")
     // список арендодателей
     @Published var landlords: [LandlordModel]? = nil
     

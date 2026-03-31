@@ -71,9 +71,9 @@ struct LandlordCreateView: View {
                     }
                 }
             }
-                .crmTitleNav(title: "Новый арендодатель", titleMode: .inline)
+                .crmTitleNav(title: "landlord.new", titleMode: .inline)
                 .onAppear {
-                    viewModel.landlord = LandlordModel(firstName: "", phone: "")
+                    viewModel.landlord = NewLandlordModel(firstName: "", phone: "")
                 }
         }
         

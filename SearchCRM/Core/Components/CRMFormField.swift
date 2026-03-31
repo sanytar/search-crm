@@ -12,6 +12,7 @@ struct CRMFormField: View {
                 get: { text },
                 set: { text = $0 }
             ))
+            .autocorrectionDisabled()
             .multilineTextAlignment(.trailing)
         }.keyboardType(keyBoardType)
     }

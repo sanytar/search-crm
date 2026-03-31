@@ -20,7 +20,7 @@ struct CRMListHeader<Sort: SortOption>: ViewModifier {
                     Menu {
                         Picker("Сортировка", selection: $sortOption) {
                             ForEach(Sort.allCases, id: \.self) { item in
-                                Text(item.rawValue).tag(item)
+                                Text(item.title).tag(item)
                             }
                         }
                         

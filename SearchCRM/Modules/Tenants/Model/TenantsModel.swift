@@ -20,11 +20,11 @@ struct TenantsModel: Codable, Identifiable {
 }
 
 struct NewTenantModel: Codable {
-    let fullName: String
-    let phone: String
-    let email: String
-    let comment: String
-    let agentId: UUID
+    var fullName: String
+    var phone: String
+    var email: String?
+    var comment: String?
+    var agentId: UUID?
     
     enum CodingKeys: String, CodingKey {
         case fullName = "full_name"
@@ -39,4 +39,6 @@ struct NewTenantModel: Codable {
 enum SortTenants: String, SortOption {
     case byName = "По имени"
     case byDate = "По дате"
+    
+    var title: String { rawValue }
 }

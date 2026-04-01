@@ -3,7 +3,10 @@ import SwiftUI
 struct LandlordCreateView: View {
     @Environment(\.dismiss) var dismiss
     
+    let isLinked: Bool = false
+    
     @ObservedObject var viewModel: LandlordViewModel
+    var onCreated: ((LandlordModel) -> Void)?
     
     var body: some View {
         NavigationStack {
@@ -58,9 +61,13 @@ struct LandlordCreateView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         Task {
-                            await viewModel.createLandlord()
-                            Helpers.doNotificationFeedback(type: .success)
-                            dismiss()
+                            if let landlord = await viewModel.createLandlord() {
+                                Helpers.doNotificationFeedback(type: .success)
+                                onCreated?(landlord)
+                                dismiss()
+                            }
+                            
+                            
                         }
                     } label: {
                         if viewModel.isLoading  {

@@ -13,7 +13,8 @@ struct ObjectDetailView: View {
     @StateObject var landlordViewModel = LandlordViewModel()
     @State var tenantViewModel: TenantsViewModel = TenantsViewModel()
     
-    @State var selectedLandlordId: UUID? = nil
+    @State var selectedLandlord: LandlordModel? = nil
+    @State private var isEditing: Bool = false
     var body: some View {
         ScrollView {
             VStack {
@@ -21,9 +22,7 @@ struct ObjectDetailView: View {
                     ForEach(testPhotos, id: \.self) { photo in
                         Image(photo)
                                 .resizable()
-                                .scaledToFill()
-                                
-                                
+                                .scaledToFill()  
                         }
                     }
                     .tabViewStyle(.page)
@@ -32,7 +31,7 @@ struct ObjectDetailView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .padding(.horizontal)
                     .overlay(alignment: .topTrailing) {
-                        Text(property.isRented ? "Сдана" : "Свободна")
+                        Text(property.isRented ? "objects.isRented" : "objects.available")
                             .font(.caption)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
@@ -44,19 +43,19 @@ struct ObjectDetailView: View {
                     }
                 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Основное")
+                    Text("general.title")
                         .font(.headline)
                         .padding(.horizontal)
                         .padding(.top)
                     
                     VStack {
-//                        LabeledContent("Тип", value: property.type.title)
-//                        Divider()
-                        LabeledContent("Адрес", value: property.address ?? "—")
+                        LabeledContent("objects.type", value: property.type.title)
                         Divider()
-                        LabeledContent("Цена", value: "\(property.price ?? 0) ₽")
+                        LabeledContent("objects.address", value: property.address ?? "—")
                         Divider()
-                        LabeledContent("Комнаты", value: "\(property.rooms ?? 0)")
+                        LabeledContent("objects.price", value: "\(property.price ?? 0) ₽")
+                        Divider()
+                        LabeledContent("objects.rooms", value: "\(property.rooms ?? 0)")
                     }
                     .padding()
                     .background(Color(.secondarySystemGroupedBackground))
@@ -65,13 +64,13 @@ struct ObjectDetailView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Дополнительная информация")
+                    Text("settings.profile.additionalInfo")
                         .font(.headline)
                         .padding(.horizontal)
                         .padding(.top)
                     
                     VStack {
-                        LabeledContent("Комментарий", value: property.comment ?? "-")
+                        LabeledContent("comment", value: property.comment ?? "-")
                         Divider()
                     }
                     .padding()
@@ -80,48 +79,28 @@ struct ObjectDetailView: View {
                     .padding(.horizontal)
                 }
                 
-                VStack {
-                    Button {
-                        isLandlordSheetOpen = true
-                    } label: {
-                        HStack {
-                            Text("Арендодатель")
-                                .foregroundStyle(.primary)
-                            Spacer()
-                            Text("Не указан")
-                                .foregroundStyle(.secondary)
-                            Image(systemName: "chevron.right")
-                                .foregroundStyle(.secondary)
-                                .font(.caption)
-                        }
-                    }
-                    Divider()
-                    Button {
-                        isTenantSheetOpen = true
-                    } label: {
-                        HStack {
-                            Text("Арендатор")
-                                .foregroundStyle(.primary)
-                            Spacer()
-                            Text("Не указан")
-                                .foregroundStyle(.secondary)
-                            Image(systemName: "chevron.right")
-                                .foregroundStyle(.secondary)
-                                .font(.caption)
-                        }
-                    }
-                }
-                .padding()
-                .background(Color(.secondarySystemGroupedBackground))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .padding(.horizontal)
+                ObjectsLinksView(
+                    isLandlordSheetOpen: $isLandlordSheetOpen,
+                    isTenantSheetOpen: $isTenantSheetOpen,
+                    selectedLandlord: selectedLandlord,
+                )
             }
         }
             .sheet(isPresented: $isLandlordSheetOpen) {
-                LandlordsSearchList(selectedLandlordId: $selectedLandlordId, viewModel: landlordViewModel)
+                LandlordsSearchList(selectedLandlordId: $selectedLandlord, viewModel: landlordViewModel)
             }
             .sheet(isPresented: $isTenantSheetOpen) {
                 Text("Список арендаторов")
+            }
+            .sheet(isPresented: $isEditing) {
+                AddObjectView(viewModel: ObjectsViewModel(property: property))
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("settings.profile.edit") {
+                        isEditing = true
+                    }
+                }
             }
     }
 }

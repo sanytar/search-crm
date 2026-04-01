@@ -2,8 +2,10 @@ import SwiftUI
 import Combine
 import Supabase
 
+
+@MainActor
 class ObjectsViewModel: ObservableObject {
-    @Published var object: newPropertyModel = newPropertyModel(type: .apartment, isRented: false)
+    @Published var object: PropertyModel
     @Published var objects: [PropertyModel]? = nil
     
     @Published var isLoading: Bool = false
@@ -12,6 +14,17 @@ class ObjectsViewModel: ObservableObject {
         didSet {
             Task { await fetchObjects(sort: sortOption) }
         }
+    }
+    
+    var isEditing: Bool = false
+    
+    init() {
+        self.object = PropertyModel(type: .apartment, isRented: false)
+    }
+    
+    init(property: PropertyModel) {
+            self.object = property
+            self.isEditing = true
     }
     
     func fetchObjects(mainFilter: ObjectChips = .all, sort: SortObjects = .priceAsc) async {
@@ -77,6 +90,40 @@ class ObjectsViewModel: ObservableObject {
                 isLoading = false
                 return false
             }
+    }
+    
+    func save() async -> Bool {
+            do {
+                if isEditing {
+                    await updateObject()
+                } else {
+                    await createObject()
+                
+                }
+            } catch let error {
+                print(error)
+                return false
+            }
+        return true
+            
+        }
+    
+    func updateObject() async {
+        isLoading = true
+        
+        do {
+            try await supabase
+                .from("properties")
+                .update(object)
+                .eq("id", value: object.id!)
+                .execute()
+            
+            await fetchObjects()
+        } catch {
+            print(error)
+        }
+        
+        isLoading = false
     }
     
     func deleteObject(id: UUID) async -> Bool {

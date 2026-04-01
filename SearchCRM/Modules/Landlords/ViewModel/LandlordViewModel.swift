@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 import Supabase
 
+@MainActor
 class LandlordViewModel: ObservableObject {
     @Published var isLoading = false
     // заполняемый арендодатель
@@ -43,21 +44,26 @@ class LandlordViewModel: ObservableObject {
         isLoading = false
     }
     
-    func createLandlord() async {
+    func createLandlord() async -> LandlordModel? {
         isLoading = true
         
         do {
-             try await supabase
+            let response: LandlordModel = try await supabase
                 .from("landlords")
                 .insert(landlord)
+                .select()
+                .single()
                 .execute()
+                .value
             
-            await fetchLandlords()
+//            await fetchLandlords()
+            return response
         } catch let error {
             print(error)
         }
         
         isLoading = false
+        return nil
     }
     
     func searchLandlords() async {

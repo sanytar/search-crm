@@ -25,59 +25,18 @@ struct ObjectsView: View {
         NavigationStack {
                 List {
                     Section {
-                        ForEach(viewModel.objects ?? []) { object in
-                            NavigationLink(destination: ObjectDetailView(property: object)) {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    HStack {
-                                        Text("\(object.type.title) • \(object.rooms ?? 0) \(String(localized: "objects.rooms.short"))")
-                                                .font(.headline)
-                                            Spacer()
-                                            
-                                        Text("\(object.price ?? 0) \(String(localized: "objects.price.type"))")
-                                                .font(.headline)
-                                                .foregroundStyle(.blue)
+                        ForEach(viewModel.objects ?? [], id: \.id) { object in
+                            NavigationLink {
+                                ObjectDetailView(property: object)
+                            } label: {
+                                ObjectRow(object: object) {
+                                    Task {
+                                        if await viewModel.deleteObject(id: object.id!) {
+                                            toast.show("Объект удален", type: .success)
+                                        }
                                     }
-                                    HStack {
-                                        Text(object.address ?? "")
-                                            .font(.subheadline)
-                                            .foregroundStyle(.secondary)
-                                        Spacer()
-                                        Text("\(object.area ?? 0) м²")
-                                            .font(.subheadline)
-                                            .foregroundStyle(.secondary)
-                                    }
-                                    Text(object.isRented ? "objects.isRented" : "objects.available")
-                                        .font(.caption)
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 4)
-                                        .background(object.isRented ? Color.red.opacity(0.1) : Color.green.opacity(0.1))
-                                        .foregroundStyle(object.isRented ? .red : .green)
-                                        .clipShape(Capsule())
                                 }
-                                .contextMenu {
-                                        Button {
-                                            // действие
-                                        } label: {
-                                            Label("Редактировать", systemImage: "pencil")
-                                        }
-                                        
-                                        Button {
-                                        } label: {
-                                            Label("Позвонить", systemImage: "phone")
-                                        }
-                                        
-                                        Button(role: .destructive) {
-                                            Task {
-                                                if await viewModel.deleteObject(id: object.id) {
-                                                    toast.show("Объект удален", type: .success)
-                                                }
-                                            }
-                                        } label: {
-                                            Label("Удалить", systemImage: "trash")
-                                        }
-                                    }
                             }
-                            
                         }
                     } header: {
                         CCRMChips(selectedChip: $selectedChip).onChange(of: selectedChip) {
@@ -101,7 +60,7 @@ struct ObjectsView: View {
                         .presentationDetents([.medium])
                 }
                 .sheet(isPresented: $isShowingAddModal) {
-                    AddObjectView()
+                    AddObjectView(viewModel: viewModel)
                 }
                 .task {
                     await viewModel.fetchObjects()

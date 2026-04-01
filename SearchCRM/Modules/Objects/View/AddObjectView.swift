@@ -3,7 +3,7 @@ import SwiftUI
 struct AddObjectView: View {
     @Environment(\.dismiss) var dismiss
     
-    @StateObject var viewModel: ObjectsViewModel = ObjectsViewModel()
+    @ObservedObject var viewModel: ObjectsViewModel
     
     @EnvironmentObject var toast: ToastManager
     
@@ -64,7 +64,7 @@ struct AddObjectView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         Task {
-                            if await viewModel.createObject() {
+                            if await viewModel.save() {
                                 Helpers.doNotificationFeedback(type: .success)
                                 dismiss()
                                 toast.show("objects.create.success", type: .success)
@@ -77,7 +77,7 @@ struct AddObjectView: View {
                 }
             }
             
-            .crmTitleNav(title: "objects.new", titleMode: .inline)
+            .crmTitleNav(title: viewModel.isEditing ? "objects.edit" : "objects.new", titleMode: .inline)
         }
     }
 }

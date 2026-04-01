@@ -14,7 +14,7 @@ enum ObjectType: String, Codable, CaseIterable {
 }
 
 struct PropertyModel: Codable, Identifiable {
-    var id: UUID
+    var id: UUID?
     var type: ObjectType
     var price: Int?
     var rooms: Int?
